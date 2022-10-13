@@ -1,4 +1,4 @@
-import { Text, StyleSheet, View, TouchableWithoutFeedback} from 'react-native';
+import { Text, StyleSheet, View} from 'react-native';
 
 const Header = props =>(
     <View style={styles.header}>
@@ -16,11 +16,11 @@ const styles = StyleSheet.create({
         height: 100,
         justifyContent: 'flex-end',
         alignItems: 'center',
-        paddingBottom: 20
+        paddingBottom: 18
     },
     Texto:{
         color: '#FFF',
-        fontSize: 28,
+        fontSize: 40,
         fontWeight: 'bold'
     }
 });

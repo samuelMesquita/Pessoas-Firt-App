@@ -1,19 +1,17 @@
-import { Text, View, StyleSheet } from "react-native";
-
-
-
+import { Text, View, StyleSheet, Image } from "react-native";
 
 const Pessoas = props =>{
    
     const peoples = props.peopleList;
 
     const componentPessoas = peoples.map(people=>{
-        const {first} = people.name;
-        const { age } = people.dob
+        const {first, last, title} = people.name;
+        const { medium } = people.picture;
+
         return (
-        <View style={styles.pessoas}>
-            <Text style={styles.conteudo} key={first}>{first}</Text>
-            <Text style={styles.conteudo}>{age}</Text>
+        <View key={first} style={styles.pessoas}>
+            <Image style={styles.avatar} source={{ uri: medium}}/>
+            <Text style={styles.conteudo}>{`${title} ${first} ${last}`}</Text>
         </View>
         );
       });
@@ -42,13 +40,19 @@ const styles = StyleSheet.create({
         borderColor: '#FFF',
         height: 60,
 
-        width: 300,
+        width: 320,
         padding: 5,
-        justifyContent: 'center',
+        paddingLeft: 20,
+        paddingRight:20,
         alignItems: "center"
     },
+    avatar:{
+        borderRadius: 50,
+        height: 45,
+        width: 45,
+        marginRight: 15
+    },
     conteudo: {
-        marginRight: 40,
         fontSize: 20,
         color: '#bdc1c6'
     }
