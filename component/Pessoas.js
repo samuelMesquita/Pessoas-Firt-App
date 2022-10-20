@@ -1,6 +1,6 @@
-import { Text, View, StyleSheet, Image } from "react-native";
+import { Text, View, StyleSheet, Image, TouchableOpacity} from "react-native";
 
-const Pessoas = props =>{
+const Pessoas = (props) =>{
    
     const peoples = props.peopleList;
 
@@ -9,10 +9,14 @@ const Pessoas = props =>{
         const { medium } = people.picture;
 
         return (
-        <View key={first} style={styles.pessoas}>
-            <Image style={styles.avatar} source={{ uri: medium}}/>
-            <Text style={styles.conteudo}>{`${title} ${first} ${last}`}</Text>
-        </View>
+       
+            <TouchableOpacity onPress={()=>{props.navigation.navigate('PeopleDetails')}}>
+                <View key={first} style={styles.pessoas}>
+                    <Image style={styles.avatar} source={{ uri: medium}}/>
+                    <Text style={styles.conteudo}>{title} {first} {last}</Text>
+                </View>
+            </TouchableOpacity>
+        
         );
       });
 
@@ -24,6 +28,7 @@ const Pessoas = props =>{
 };
 
 
+export default Pessoas;
 
 const styles = StyleSheet.create({
     container:{
@@ -47,15 +52,15 @@ const styles = StyleSheet.create({
         alignItems: "center"
     },
     avatar:{
+        aspectRatio: 1,
+        flex: 1,
         borderRadius: 50,
-        height: 45,
-        width: 45,
         marginRight: 15
     },
     conteudo: {
+        flex: 5,
         fontSize: 20,
         color: '#bdc1c6'
     }
 });
 
-export default Pessoas;

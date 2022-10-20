@@ -1,47 +1,20 @@
-import { StyleSheet, Text, View } from 'react-native';
-import React from 'react';
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
-import axios from 'axios';
+import PeoplePages from './src/screen/PeoplePages';
+import PeopleDetails from './src/screen/PeopleDetails';
 
-import Header from './component/Header';
-import Pessoas from './component/Pessoas';
+const Stack = createNativeStackNavigator();
 
-export default class App extends React.Component {
-
-  constructor(props){
-    super(props);
-    this.state = { people: [] }
-  }
-
-  componentDidMount(){
-    axios
-    .get('https://randomuser.me/api/?nat=br&results=8')
-    .then(response =>{
-        const { results } = response.data;
-        this.setState({
-          people: results
-        });
-    })
-  }
-
-
-  render(){
-    return (
-      <View style={styles.container}>
-        <Header title="People" style={styles.header}></Header>
-        <Pessoas peopleList={this.state.people}></Pessoas>
-      </View>
-    );
-  }
+function App() {
+  return (
+    <NavigationContainer>
+      <Stack.Navigator initialRouteName="Home">
+        <Stack.Screen name="People" component={PeoplePages} />
+        <Stack.Screen name="PeopleDetails" component={PeopleDetails} />
+      </Stack.Navigator>
+    </NavigationContainer>
+  );
 }
 
-const styles = StyleSheet.create({
-  container:{
-    backgroundColor: '#202124',
-    height: 1000
-  },
-  PessoaContainer:{
-    flex: 0.3,
-    justifyContent: 'center'
-  }
-});
+export default App;
