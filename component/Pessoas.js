@@ -2,15 +2,15 @@ import { Text, View, StyleSheet, Image, TouchableOpacity} from "react-native";
 
 const Pessoas = (props) =>{
    
-    const peoples = props.peopleList;
+    const {peopleList, navigation} = props;
 
-    const componentPessoas = peoples.map(people=>{
+    const componentPessoas = peopleList.map(people=>{
         const {first, last, title} = people.name;
         const { medium } = people.picture;
 
         return (
        
-            <TouchableOpacity onPress={()=>{props.navigation.navigate('PeopleDetails')}}>
+            <TouchableOpacity onPress={()=>{navigation.navigate('PeopleDetails')}}>
                 <View key={first} style={styles.pessoas}>
                     <Image style={styles.avatar} source={{ uri: medium}}/>
                     <Text style={styles.conteudo}>{title} {first} {last}</Text>
