@@ -25,7 +25,7 @@ export default class PeoplePages extends React.Component {
 
 
   render(){
-    return (  
+    return (
       <View style={styles.container}>
         <Pessoas peopleList={this.state.people} navigation={this.props.navigation}></Pessoas>
       </View>

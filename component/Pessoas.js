@@ -6,11 +6,24 @@ const Pessoas = (props) =>{
 
     const componentPessoas = peopleList.map(people=>{
         const {first, last, title} = people.name;
-        const { medium } = people.picture;
+        const { medium, large } = people.picture;
+        const { age } = people.dob;
+        const { city } = people.location;
 
         return (
-       
-            <TouchableOpacity onPress={()=>{navigation.navigate('PeopleDetails')}}>
+            <TouchableOpacity onPress={
+                ()=>{
+                    navigation.navigate('PeopleDetails',
+                    {
+                        user: {
+                            name: `${first} ${last} ${title}`,
+                            old: age,
+                            perfil: large,
+                            location: city
+                        }
+                    })
+                }
+            }>
                 <View key={first} style={styles.pessoas}>
                     <Image style={styles.avatar} source={{ uri: medium}}/>
                     <Text style={styles.conteudo}>{title} {first} {last}</Text>
