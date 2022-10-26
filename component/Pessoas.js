@@ -7,8 +7,8 @@ const Pessoas = (props) =>{
     const componentPessoas = peopleList.map(people=>{
         const {first, last, title} = people.name;
         const { medium, large } = people.picture;
-        const { age } = people.dob;
-        const { city } = people.location;
+        const { city, state } = people.location;
+        const { email, phone, cell, nat } = people;
 
         return (
             <TouchableOpacity onPress={
@@ -16,10 +16,14 @@ const Pessoas = (props) =>{
                     navigation.navigate('PeopleDetails',
                     {
                         user: {
-                            name: `${first} ${last} ${title}`,
-                            old: age,
+                            name: `${title} ${first} ${last}`,
                             perfil: large,
-                            location: city
+                            city: city,
+                            state: state,
+                            email: email,
+                            nat: nat,
+                            phone: phone,
+                            cell: cell
                         }
                     })
                 }

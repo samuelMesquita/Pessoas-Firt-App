@@ -1,4 +1,4 @@
-import { StyleSheet, View } from 'react-native';
+import { StyleSheet, View, ScrollView } from 'react-native';
 import React from 'react';
 
 import axios from 'axios';
@@ -14,7 +14,7 @@ export default class PeoplePages extends React.Component {
 
   componentDidMount(){
     axios
-    .get('https://randomuser.me/api/?nat=br&results=8')
+    .get('https://randomuser.me/api/?nat=br&results=14')
     .then(response =>{
         const { results } = response.data;
         this.setState({
@@ -26,9 +26,11 @@ export default class PeoplePages extends React.Component {
 
   render(){
     return (
-      <View style={styles.container}>
-        <Pessoas peopleList={this.state.people} navigation={this.props.navigation}></Pessoas>
-      </View>
+      <ScrollView style={styles.scroll}>
+        <View style={styles.container}>
+          <Pessoas peopleList={this.state.people} navigation={this.props.navigation}></Pessoas>
+        </View>
+      </ScrollView>
     );
   }
 }
